@@ -43,13 +43,11 @@ class FolderUserGithubController {
     });
 
     if( item.length !== 0 ){
-      console.log(item);
       return item;
     }
     
     /**Verifica se o usuário é dono da pasta para poder adicionar nela um novo usuário */
     if (folder.user_id === auth.user.id) {
-      console.log(folder.user_id, auth.user.id);
         const item = await Item.create({ folder_id: folder.id, user_github: userGithub,tags:{ tags:[] } })
         return item;
     }
