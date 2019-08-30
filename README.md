@@ -1,28 +1,169 @@
-# Adonis API application
+# Desafio PayPrev
 
-This is the boilerplate for creating an API server in AdonisJs, it comes pre-configured with.
+API foi desenvolvida usando AdonisJS com banco de dados Postgresql.
 
-1. Bodyparser
-2. Authentication
-3. CORS
-4. Lucid ORM
-5. Migrations and seeds
+## Documentação
 
-## Setup
+### Rotas 
+### Registra-se
+- `POST  /register`. <br/> 
+    Request: 
+  ```json
+    {
+        "email":"",
+        "password":"",
+        "cpf":"",
+        "role":""
+    }
+    ```
+    Response: 
+     ```json
+     {
+        "email":"",
+        "password":"",
+        "cpf":"",
+        "role":""
+    }
+    ```
+### Loga-se
+- `POST /authenticate`. <br/>
+  Request:
+    ```json
+    {
+        "email":"",
+        "password":""
+    }
+    ```
+    Response
+    ```json
+    {
+        "type": "",
+        "token": "",
+        "refreshToken": ""
+    }
+    ```  
+### Procurar usuários direto no github
+- `GET /admin/usersGithubApi/:username`
 
-Use the adonis command to install the blueprint
+### Salva um usuário do github na API
+- `POST /admin/userGithub`. <br/>
+ 
+  Request
+    ```json
+    {
+        "username":""
+    }
+    ```
+    Response
+    ```json
+    {
+        "id": ,
+        "login": "",
+        "name": "",
+        "bio": "",
+        "location": "",
+        "html_url": "",
+        "created_at": "",
+        "updated_at": ""
+    }
+    ```
+### Visualizar os usuários adicionados
+- `GET /usersGithub`. <br/>
+ 
+    Response
+    ```json
+    [
+     {   
+         "id": ,
+        "login": "",
+        "name": "",
+        "bio": "",
+        "location": "",
+        "html_url": "",
+        "created_at": "",
+        "updated_at": ""
+     }
+    ]
+    ```
+### Criar uma pasta
+- `POST /folders `<br />
+    Request
+    ```json
+    {
+        "name":""
+    }
+    ```
+    Response
+    ```json
+    {
+        "id":"",
+        "name":""
+    }
+    ```
+### Visualizar todas as pastas que o usuario criou
+- `GET /folders`
+    Response
+    ```json
+    [
+        {
+            "id":"",
+            "name":""
+        }
+    ]
+    ```
+### Visualizar o conteúdo de uma pasta.
+- `GET /folders/:idFolder`<br />
+    Response
+    ```json
+    [
+        {
+            "id":"",
+            "user_github":{},
+            "tags":{ "tags":[]}
+        }
+    ]
+    ```
+### Editar o nome da pasta
+- `PUT /folders/:idFolder` <br />
+    Request
+    ```json
+    {
+        "name":""
+    }
+    ```
+    Response
+    ```json
+    {
+            "id":"",
+            "name":""
+    }
+    ```
+### Remover uma pasta
+- `DELETE /folders/:idFolder` <br />
 
-```bash
-adonis new yardstick --api-only
-```
-
-or manually clone the repo and then run `npm install`.
-
-
-### Migrations
-
-Run the following command to run startup migrations.
-
-```js
-adonis migration:run
-```
+### Adicionar um usuario github na pasta
+- `POST /folderUser` <br />
+  Request
+  ```json
+  {
+      "idFolder":"",
+      "idUser":""
+  }
+  ```
+    Response
+    ```json
+    {
+            "id":"",
+            "user_github":{},
+            "tags":{ "tags":[]}
+    }
+    ```
+### Adicionar uma Tag a um usuário dentro de uma pasta
+- `POST /tag` <br />
+    Request
+    ```json
+    {
+        "idItem":"",
+        "tag":""
+    }
+    ```
