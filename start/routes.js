@@ -21,6 +21,9 @@ Route.post('/register', 'AuthController.register');
 /**Rota para autentica-se */
 Route.post('/authenticate', 'AuthController.authenticate');
 
+Route.get('/', ({ response }) => {
+  return response.status(200).send({ alive: true });
+})
 Route.group(() => {
   /**Rota para o usuário admin pesquisar usuario direto no github */
   Route.get('/usersGithubApi/:username', 'AdminController.findUserGitHub');
